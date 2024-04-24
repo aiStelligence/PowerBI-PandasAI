@@ -1,0 +1,5 @@
+pandasai
+python-dotenv
+pandas
+powerbiclient
+pyyaml
