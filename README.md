@@ -1,0 +1,2 @@
+# PowerBI-PandasAI
+Tech-session
