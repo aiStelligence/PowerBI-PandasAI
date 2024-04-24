@@ -1,5 +1,5 @@
 pandasai
-python-dotenv
 pandas
+python-dotenv
 powerbiclient
 pyyaml
