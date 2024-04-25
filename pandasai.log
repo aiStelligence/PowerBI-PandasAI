@@ -1,0 +1,443 @@
+2024-04-25 14:21:01 [INFO] Question: 
+            Instruction
+            - help me clean this dataset and order it by column 'anime_id' ascending
+            - help me remove special character
+            - normalize the records by lowercase all the records
+            - make column genre to list
+            - reset index
+            
+2024-04-25 14:21:02 [INFO] Running PandasAI with azure-openai LLM...
+2024-04-25 14:21:02 [INFO] Prompt ID: 77afba8c-aa83-4b7a-9996-2f8d03671836
+2024-04-25 14:21:02 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-04-25 14:21:02 [INFO] Executing Step 0: ValidatePipelineInput
+2024-04-25 14:21:02 [INFO] Executing Step 1: CacheLookup
+2024-04-25 14:21:02 [INFO] Executing Step 2: PromptGeneration
+2024-04-25 14:21:05 [INFO] Using prompt: <dataframe>
+dfs[0]:12294x7
+anime_id,name,genre,type,episodes,rating,members
+32359,Dream C Club Pure Songs Clips,"Action, Fantasy, Magic, Shoujo",Special,59,,2246
+8195,Superflat First Love,"Adventure, Comedy, Fantasy, Sci-Fi, Shounen",TV,18,4.13,25
+17897,Karneval Specials,,,74,3.69,3134
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+
+
+
+
+### QUERY
+ 
+            Instruction
+            - help me clean this dataset and order it by column 'anime_id' ascending
+            - help me remove special character
+            - normalize the records by lowercase all the records
+            - make column genre to list
+            - reset index
+            
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-04-25 14:21:05 [INFO] Executing Step 3: CodeGenerator
+2024-04-25 14:21:32 [INFO] HTTP Request: POST https://openai-internal-eus-test-02.openai.azure.com//openai/deployments/gpt-4-0125-preview/chat/completions?api-version=2023-12-01-preview "HTTP/1.1 200 OK"
+2024-04-25 14:21:32 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:12294x7
+anime_id,name,genre,type,episodes,rating,members
+32359,Dream C Club Pure Songs Clips,"Action, Fantasy, Magic, Shoujo",Special,59,,2246
+8195,Superflat First Love,"Adventure, Comedy, Fantasy, Sci-Fi, Shounen",TV,18,4.13,25
+17897,Karneval Specials,,,74,3.69,3134
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+
+
+
+
+### QUERY
+ 
+            Instruction
+            - help me clean this dataset and order it by column 'anime_id' ascending
+            - help me remove special character
+            - normalize the records by lowercase all the records
+            - make column genre to list
+            - reset index
+            
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-04-25 14:21:32 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Assuming dfs is a list of DataFrames and we need to work on the first DataFrame
+df = dfs[0]
+
+# Cleaning and ordering the dataset
+# Remove special characters
+df['name'] = df['name'].str.replace('[^\w\s]', '', regex=True)
+df['genre'] = df['genre'].str.replace('[^\w\s,]', '', regex=True)
+
+# Normalize records by lowercase
+df = df.applymap(lambda s: s.lower() if type(s) == str else s)
+
+# Convert genre from string to list
+df['genre'] = df['genre'].str.split(', ')
+
+# Order by 'anime_id' ascending
+df.sort_values('anime_id', inplace=True)
+
+# Reset index
+df.reset_index(drop=True, inplace=True)
+
+# Declare result var
+result = { "type": "dataframe", "value": df }
+
+# Return the cleaned and ordered DataFrame
+result
+            ```
+            
+2024-04-25 14:21:32 [INFO] Executing Step 4: CachePopulation
+2024-04-25 14:21:32 [INFO] Executing Step 5: CodeCleaning
+2024-04-25 14:21:32 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['name'] = df['name'].str.replace('[^\\w\\s]', '', regex=True)
+df['genre'] = df['genre'].str.replace('[^\\w\\s,]', '', regex=True)
+df = df.applymap(lambda s: s.lower() if type(s) == str else s)
+df['genre'] = df['genre'].str.split(', ')
+df.sort_values('anime_id', inplace=True)
+df.reset_index(drop=True, inplace=True)
+result = {'type': 'dataframe', 'value': df}
+result
+        ```
+2024-04-25 14:21:32 [INFO] Executing Step 6: CodeExecution
+2024-04-25 14:21:32 [INFO] Executing Step 7: ResultValidation
+2024-04-25 14:21:32 [INFO] Answer: {'type': 'dataframe', 'value':        anime_id                                            name  \
+0             1                                    cowboy bebop   
+1             5                  cowboy bebop tengoku no tobira   
+2             6                                          trigun   
+3             7                              witch hunter robin   
+4             8                          beet the vandel buster   
+...         ...                                             ...   
+12289     34514                             pokemon generations   
+12290     34519               mobile suit gakuen greco koushien   
+12291     34522                         wake up girls shin shou   
+12292     34525                               centaur no nayami   
+12293     34527  gouchan moko to chinjuu no mori no nakamatachi   
+
+                                                   genre     type episodes  \
+0       [action, adventure, comedy, drama, scifi, space]       tv       26   
+1                 [action, drama, mystery, scifi, space]    movie        1   
+2                                [action, comedy, scifi]       tv       26   
+3      [action, drama, magic, mystery, police, supern...       tv       26   
+4            [adventure, fantasy, shounen, supernatural]       tv       52   
+...                                                  ...      ...      ...   
+12289           [action, adventure, fantasy, game, kids]      ona       18   
+12290                                           [comedy]  special        9   
+12291                                     [drama, music]       tv  unknown   
+12292     [comedy, fantasy, slice of life, supernatural]       tv  unknown   
+12293                                  [adventure, kids]    movie        1   
+
+       rating  members  
+0        8.82   486824  
+1        8.40   137636  
+2        8.32   283069  
+3        7.36    64905  
+4        7.06     9848  
+...       ...      ...  
+12289    7.21      295  
+12290    5.67       94  
+12291     NaN      381  
+12292     NaN      108  
+12293     NaN        5  
+
+[12294 rows x 7 columns]}
+2024-04-25 14:21:32 [INFO] Executing Step 8: ResultParsing
+2024-04-25 14:22:17 [INFO] Question: 
+    Instruction:
+    "Plot a single top 10 anime in barchart based on rating with different color on each bar"
+    
+2024-04-25 14:22:17 [INFO] Running PandasAI with azure-openai LLM...
+2024-04-25 14:22:17 [INFO] Prompt ID: e7f41e4a-0c2a-430d-9116-d7f3385b4dc5
+2024-04-25 14:22:17 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-04-25 14:22:26 [INFO] Question: 
+    Instruction:
+    "Plot a single top 10 anime in barchart based on rating with different color on each bar"
+    
+2024-04-25 14:22:26 [INFO] Running PandasAI with azure-openai LLM...
+2024-04-25 14:22:26 [INFO] Prompt ID: 181c8968-10ee-4cdf-8cca-749ddd616353
+2024-04-25 14:22:26 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-04-25 14:23:25 [INFO] Question: 
+    Instruction:
+    "Plot a single top 10 anime in barchart based on rating with different color on each bar"
+    
+2024-04-25 14:23:26 [INFO] Running PandasAI with azure-openai LLM...
+2024-04-25 14:23:26 [INFO] Prompt ID: f871379f-68f9-4abc-b111-68c868a302ed
+2024-04-25 14:23:26 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-04-25 14:23:26 [INFO] Executing Step 0: ValidatePipelineInput
+2024-04-25 14:23:26 [INFO] Executing Step 1: CacheLookup
+2024-04-25 14:23:26 [INFO] Executing Step 2: PromptGeneration
+2024-04-25 14:23:29 [INFO] Using prompt: <dataframe>
+dfs[0]:12294x7
+anime_id,name,genre,type,episodes,rating,members
+4155,Denki Musou Hana,,OVA,358,6.82,39758
+4391,Oreca Battle,"Magic, Music, Shoujo",,86,,2750
+10044,Norakuro Ittouhei,"Adventure, Comedy, Fantasy, Romance",Special,154,5.02,60139
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+
+
+
+
+### QUERY
+ 
+    Instruction:
+    "Plot a single top 10 anime in barchart based on rating with different color on each bar"
+    
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-04-25 14:23:29 [INFO] Executing Step 3: CodeGenerator
+2024-04-25 14:25:40 [INFO] HTTP Request: POST https://openai-internal-eus-test-02.openai.azure.com//openai/deployments/gpt-4-0125-preview/chat/completions?api-version=2023-12-01-preview "HTTP/1.1 200 OK"
+2024-04-25 14:25:40 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:12294x7
+anime_id,name,genre,type,episodes,rating,members
+4155,Denki Musou Hana,,OVA,358,6.82,39758
+4391,Oreca Battle,"Magic, Music, Shoujo",,86,,2750
+10044,Norakuro Ittouhei,"Adventure, Comedy, Fantasy, Romance",Special,154,5.02,60139
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+
+
+
+
+### QUERY
+ 
+    Instruction:
+    "Plot a single top 10 anime in barchart based on rating with different color on each bar"
+    
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-04-25 14:25:40 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs is a list of DataFrames and we need to work with the first one
+df = dfs[0]
+
+# Filter out rows where rating is NaN
+df = df.dropna(subset=['rating'])
+
+# Sort the DataFrame based on the 'rating' column in descending order
+df_sorted = df.sort_values(by='rating', ascending=False)
+
+# Select the top 10 anime based on rating
+top_10_anime = df_sorted.head(10)
+
+# Plotting
+plt.figure(figsize=(10, 8))
+bars = plt.bar(top_10_anime['name'], top_10_anime['rating'], color=plt.cm.Paired(range(len(top_10_anime))))
+
+# Adding title and labels
+plt.title('Top 10 Anime based on Rating')
+plt.xlabel('Anime Name')
+plt.ylabel('Rating')
+plt.xticks(rotation=45, ha="right")
+
+# Adding the color bar
+sm = plt.cm.ScalarMappable(cmap=plt.cm.Paired, norm=plt.Normalize(vmin=min(top_10_anime['rating']), vmax=max(top_10_anime['rating'])))
+plt.colorbar(sm, label='Rating')
+
+# Save the plot as a .png file
+plt.savefig('top_10_anime_ratings.png')
+plt.close()
+
+# Declare result var
+result = { "type": "plot", "value": "top_10_anime_ratings.png" }
+            ```
+            
+2024-04-25 14:25:40 [INFO] Executing Step 4: CachePopulation
+2024-04-25 14:25:40 [INFO] Executing Step 5: CodeCleaning
+2024-04-25 14:25:40 [INFO] Saving charts to c:\Users\(Ai)AiSukmoren\Desktop\Tech-Session\PowerBI-PandasAI\exports\charts\temp_chart.png
+2024-04-25 14:25:40 [INFO] 
+Code running:
+```
+df = dfs[0]
+df = df.dropna(subset=['rating'])
+df_sorted = df.sort_values(by='rating', ascending=False)
+top_10_anime = df_sorted.head(10)
+plt.figure(figsize=(10, 8))
+bars = plt.bar(top_10_anime['name'], top_10_anime['rating'], color=plt.cm.Paired(range(len(top_10_anime))))
+plt.title('Top 10 Anime based on Rating')
+plt.xlabel('Anime Name')
+plt.ylabel('Rating')
+plt.xticks(rotation=45, ha='right')
+sm = plt.cm.ScalarMappable(cmap=plt.cm.Paired, norm=plt.Normalize(vmin=min(top_10_anime['rating']), vmax=max(top_10_anime['rating'])))
+plt.colorbar(sm, label='Rating')
+plt.savefig('c:/Users/(Ai)AiSukmoren/Desktop/Tech-Session/PowerBI-PandasAI/exports/charts/temp_chart.png')
+plt.close()
+result = {'type': 'plot', 'value': 'c:/Users/(Ai)AiSukmoren/Desktop/Tech-Session/PowerBI-PandasAI/exports/charts/temp_chart.png'}
+        ```
+2024-04-25 14:25:40 [INFO] Executing Step 6: CodeExecution
+2024-04-25 14:25:41 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Users\(Ai)AiSukmoren\Desktop\Tech-Session\PowerBI-PandasAI\.venv\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "c:\Users\(Ai)AiSukmoren\Desktop\Tech-Session\PowerBI-PandasAI\.venv\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 12, in <module>
+  File "c:\Users\(Ai)AiSukmoren\Desktop\Tech-Session\PowerBI-PandasAI\.venv\lib\site-packages\matplotlib\pyplot.py", line 2341, in colorbar
+    ret = gcf().colorbar(mappable, cax=cax, ax=ax, **kwargs)
+  File "c:\Users\(Ai)AiSukmoren\Desktop\Tech-Session\PowerBI-PandasAI\.venv\lib\site-packages\matplotlib\figure.py", line 1285, in colorbar
+    raise ValueError(
+ValueError: Unable to determine Axes to steal space for Colorbar. Either provide the *cax* argument to use as the Axes for the Colorbar, provide the *ax* argument to steal space from it, or add *mappable* to an Axes.
+
+2024-04-25 14:25:41 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-04-25 14:25:41 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-04-25 14:25:41 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-04-25 14:25:41 [INFO] Using prompt: <dataframe>
+dfs[0]:12294x7
+anime_id,name,genre,type,episodes,rating,members
+4155,Denki Musou Hana,,OVA,358,6.82,39758
+4391,Oreca Battle,"Magic, Music, Shoujo",,86,,2750
+10044,Norakuro Ittouhei,"Adventure, Comedy, Fantasy, Romance",Special,154,5.02,60139
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ 
+    Instruction:
+    "Plot a single top 10 anime in barchart based on rating with different color on each bar"
+    
+
+You generated this python code:
+df = dfs[0]
+df = df.dropna(subset=['rating'])
+df_sorted = df.sort_values(by='rating', ascending=False)
+top_10_anime = df_sorted.head(10)
+plt.figure(figsize=(10, 8))
+bars = plt.bar(top_10_anime['name'], top_10_anime['rating'], color=plt.cm.Paired(range(len(top_10_anime))))
+plt.title('Top 10 Anime based on Rating')
+plt.xlabel('Anime Name')
+plt.ylabel('Rating')
+plt.xticks(rotation=45, ha='right')
+sm = plt.cm.ScalarMappable(cmap=plt.cm.Paired, norm=plt.Normalize(vmin=min(top_10_anime['rating']), vmax=max(top_10_anime['rating'])))
+plt.colorbar(sm, label='Rating')
+plt.savefig('c:/Users/(Ai)AiSukmoren/Desktop/Tech-Session/PowerBI-PandasAI/exports/charts/temp_chart.png')
+plt.close()
+result = {'type': 'plot', 'value': 'c:/Users/(Ai)AiSukmoren/Desktop/Tech-Session/PowerBI-PandasAI/exports/charts/temp_chart.png'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Users\(Ai)AiSukmoren\Desktop\Tech-Session\PowerBI-PandasAI\.venv\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "c:\Users\(Ai)AiSukmoren\Desktop\Tech-Session\PowerBI-PandasAI\.venv\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 12, in <module>
+  File "c:\Users\(Ai)AiSukmoren\Desktop\Tech-Session\PowerBI-PandasAI\.venv\lib\site-packages\matplotlib\pyplot.py", line 2341, in colorbar
+    ret = gcf().colorbar(mappable, cax=cax, ax=ax, **kwargs)
+  File "c:\Users\(Ai)AiSukmoren\Desktop\Tech-Session\PowerBI-PandasAI\.venv\lib\site-packages\matplotlib\figure.py", line 1285, in colorbar
+    raise ValueError(
+ValueError: Unable to determine Axes to steal space for Colorbar. Either provide the *cax* argument to use as the Axes for the Colorbar, provide the *ax* argument to steal space from it, or add *mappable* to an Axes.
+
+
+Fix the python code above and return the new python code:
+2024-04-25 14:25:41 [INFO] Executing Step 1: CodeGenerator
