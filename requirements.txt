@@ -3,4 +3,3 @@ pandas
 python-dotenv
 powerbiclient
 pyyaml
-notebook
